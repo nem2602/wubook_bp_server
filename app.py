@@ -13,11 +13,7 @@ def ack_test():
         <pre>{}</pre>
     """.format(request.form.to_dict())
 
-# Ako Render koristi port promenljivu:
-if __name__ == '__main__':
-    import os
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
-    @app.route('/bp/webhook', methods=['POST'])
+@app.route('/bp/webhook', methods=['POST'])
 def bp_webhook():
     data = request.json
     print("📩 Webhook payload:", data)
@@ -31,4 +27,6 @@ def bp_webhook():
         <p>Status: <strong>{status}</strong></p>
     """
 
-
+if __name__ == '__main__':
+    import os
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
